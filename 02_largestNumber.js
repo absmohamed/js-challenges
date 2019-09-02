@@ -10,10 +10,18 @@ Question: Why does the test pass for the third (last) test
 with no changes to the function?
 */
 
-function largestNumber(arr) {
-    // Your code here
-    // Google JS syntax ;)
-}
+function largestNumber(arr){
+    let largestNumber = arr[0];
+    for(let i=1; i<arr.length; i++){
+      if(arr[i] > largestNumber){
+        largestNumber = arr[i];   
+      }
+    }
+   return largestNumber;
+   }
+
+   largestNumber([11, 12, 13]);
+
 
 var assert = require('assert');
 
@@ -29,3 +37,4 @@ describe('largestNumber', function () {
     });
 
 });
+
