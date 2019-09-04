@@ -26,6 +26,9 @@ describe("productById", () => {
     expect(product.id).toBe(1);
     expect(product.title).toBe('Coca Cola');
   });
+  it("Should return null when product is not found", () => {
+    expect(shop.productById(999)).toBe(null);
+  });
 });
 
 describe("productCost", () => {
@@ -37,6 +40,20 @@ describe("productCost", () => {
 describe("formatAddress", () => {
   it("Should format the given user's address", () => {
     expect(shop.formatAddress('jane@doe.com')).toBe('12 Main St, Brisbane, 4000');
+  });
+});
+
+describe("customerOrderById", () => {
+  it("Should return the correct order for the orderId and customer", () => {
+    let order = shop.customerOrderById('jane@doe.com', 61721);
+    expect(order.id).toBe(61721);
+    expect(order.status).toBe("delivered");
+  });
+  it("Should return null when the order isn't found", () => {
+  expect(shop.customerOrderById('nonexistent@gmail.com', 61721)).toBe(null);
+  });
+  it("Should return null when the order id isn't found", () => {
+    expect(shop.customerOrderById('jane@doe.com', 99999)).toBe(null);
   });
 });
 
