@@ -14,13 +14,16 @@ function calculateTotalScore(scores) {
 }
 
 function findWinner(players) {
-    let winner = players[0];
+    let winner = players[0].name;
+    let winnerScore = calculateTotalScore(players[0].scores);
     for(let ind = 1; ind < players.length; ind++) {
-        if (calculateTotalScore(players[ind].scores) > calculateTotalScore(winner.scores)) {
-            winner = players[ind];
+        let playerTotalScore = calculateTotalScore(players[ind].scores)
+        if (playerTotalScore > winnerScore) {
+            winner = players[ind].name;
+            winnerScore = playerTotalScore;
         }
     }
-    return winner.name;    
+    return winner;    
 }
 
 module.exports = {
