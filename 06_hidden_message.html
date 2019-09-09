@@ -26,8 +26,13 @@
       text-align: center;
     }
     #hidden-message {
-      background: #c4c5ff;
+      background: #c4ffd3;
       padding: 200px;
+      display: none;
+      
+    }
+
+    #button-hide {
       display: none;
     }
     </style>
@@ -36,6 +41,8 @@
   <body>
     <div id="hidden-message">This is our hidden message!</div>
     <button id="button-show">Show secret message</button>
+
+    <button id="button-hide">Hide secret message</button>
   </body>
 
   <script>
@@ -49,6 +56,19 @@
   buttonShow.onclick = function () {
     // buttonShow has been clicked, show the hidden message.
     hiddenMessage.style.display = 'block';
+    buttonShow.style.display = 'none';
+    buttonHide.style.display = 'block';
+  }
+
+  // Get the element #button-hide and assign it to button Hide variable
+  const buttonHide = document.querySelector('#button-hide')
+
+  // Listen for a buttonHide click
+  buttonHide.onclick = function () {
+    // buttonHide has been clicked, to hide the hidden message.
+    hiddenMessage.style.display = 'none';
+    buttonShow.style.display = 'block';
+    buttonHide.style.display = 'none';
   }
   </script>
 
