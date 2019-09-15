@@ -25,19 +25,36 @@
 
   <body>
 
-    <p><input type="text" placeholder="Enter your name"></p>
+    <p><input id="firstname" class="change-name" type="text" placeholder="Enter your first name"></p>
+    <p><input id="lastname" class="change-name" type="text" placeholder="Enter your last name"></p>
 
     <h1></h1>
 
+    <script>
+      const firstName = document.querySelector('#firstName')
+      const lastName = document.querySelector('#lastName')
+      const welcomeMessage = document.querySelector('h1')
+        
+      function changeName() {
+        if ((firstName.value + lastName.value).length === 0) {
+            welcomeMessage.textContent = '';
+        }
+        else {
+            let name = (firstName.value + ' ' + lastName.value).trim();
+            name.toUpperCase;
+            welcomeMessage.textContent = `Welcome, ${name}!`; 
+        }
+      }
+
+      let allNameFields = document.querySelectorAll(`.change-name`);
+      for (e of allNameFields) {
+        e.onkeyup = changeName;
+
+        
+      }
+    </script>
   </body>
 
-  <script>
-  const name = document.querySelector('input')
-  const welcomeMessage = document.querySelector('h1')
-  name.onkeyup = function () {
-    // hint: name.value gives you the current text in the input box
-    welcomeMessage.textContent = `Welcome, ${name.value}!`;
-  }
-  </script>
+  
 
 </html>
