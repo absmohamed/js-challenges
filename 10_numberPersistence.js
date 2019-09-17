@@ -12,9 +12,28 @@ Because 9*9*9 = 729, 7*2*9 = 126, 1*2*6 = 12, and 1*2 = 2
 */
 
 function persistence(num) {
-    //enter code here
-}
+    let counter = 0;
+    let arr = num.toString().split('');
 
+    function add() {
+        let sum = 1;
+
+        for (i = 0; i < arr.length; i++) {
+            sum = sum * arr[i]
+        }
+        counter += 1
+        arr = sum.toString().split('');
+
+        if (sum > 9) {
+            return add();
+        }
+        else {
+            return counter;
+        }
+    }
+    return add();
+}
+console.log(persistence(25));
 module.exports = {
     persistence
 }
