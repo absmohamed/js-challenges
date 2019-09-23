@@ -13,8 +13,11 @@ npm test
 */
 
 function vowels(string) {
+    let m = string.match(/[aeiou]/gi);
+    return m === null ? 0 : m.length;
     // Your code here
 }
+console.log(vowels("The quick brown fox"));
 
 module.exports = {
     vowels
