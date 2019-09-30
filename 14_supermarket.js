@@ -32,8 +32,38 @@ Check your solutions with npm test
 
 // Returns the queue time for all customers given number of tills
 function queueTime(customers, n) {
-    // Your code here
-}
+    //if queue empty
+    if (customers.length === 0) {return 0;}
+    let currentQueue = customers;
+    let tillArr = [];
+    let totalTime = 0;
+    //populate array with n zeros where zero represents empty till
+    for (let i = 0; i< n; i++){
+        tillArr.push(0);
+    }
+    do {
+        //if free space in till, put next person from queue in that till
+        for (let i = 0; i<tillArr.length; i++){
+        if (tillArr[i] === 0){
+            tillArr[i]=currentQueue[0];
+            //remove the customer from queue
+            currentQueue.shift();
+        }
+        //reduce time remaining of all customers currently in tills
+        if (tillArr[i] > 0){
+            tillArr[i] -= 1;
+        }
+        }
+    totalTime++;
+    } while (currentQueue.length > 0);
+    let longestRemaining = 0;
+    //add longest remaining time still in till to result
+    for (let i = 0; i<tillArr.length; i++){
+        if (tillArr[i] > longestRemaining){longestRemaining = tillArr[i];}
+    }
+    return totalTime + longestRemaining;
+}       
+console.log(queueTime([1,2,3,4,5,6]));
 
 module.exports = {
     queueTime
