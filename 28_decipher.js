@@ -14,7 +14,34 @@
 // EXTRA FUN!!! Make up another encryption and challenge your friends to write the decipher method
 
 function decipher(code) {
-	// your code goes here
+	let newCode="";
+	var n
+	var words = code.split(" ");
+	words.forEach(word => {
+		newWord="";
+		let number;
+		if (word.charAt(0)=='1'){
+			n=3
+		}   
+		else{
+			n=2
+		}
+		
+		number = parseInt(word.substring(0,n));
+		newWord = String.fromCharCode(number)
+		if (word.length>(n+1))
+			newWord+=word.charAt(word.length - 1)
+		if (word.length>(n+2))
+			newWord+=word.substring((n+1),word.length - 1)
+		newWord+=word.charAt(n)
+		
+		if (newCode===""){
+			newCode=newWord;
+		}else{
+			newCode+=" "+newWord;
+		}
+	});
+	console.log(newCode)
 }
 
 let assert = require("assert")
